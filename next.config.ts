@@ -1,7 +1,20 @@
 import type { NextConfig } from "next";
 
+/**
+ * Next.js Configuration
+ * 
+ * Configured to allow external images from Unsplash for homestay photos.
+ */
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        pathname: "/**",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
