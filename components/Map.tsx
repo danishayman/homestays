@@ -35,8 +35,8 @@ const customIcon = new Icon({
 });
 
 // Center map on Rawang/Selayang area
-const MAP_CENTER: [number, number] = [3.694851, 101.047955];
-const MAP_ZOOM = 13;
+const MAP_CENTER: [number, number] = [3.69073, 101.02700];
+const MAP_ZOOM = 11;
 
 /**
  * MouseCoordinates Component
@@ -96,7 +96,20 @@ export default function Map() {
                 ))}
             </MapContainer>
 
-
+            {/* Coordinate display overlay - shows when hovering on map */}
+            {mouseCoords && (
+                <div className="absolute bottom-6 sm:bottom-6 left-1/2 sm:left-6 -translate-x-1/2 sm:translate-x-0 z-[1000] bg-white/95 backdrop-blur border border-gray-200 text-gray-800 px-4 py-2.5 rounded-lg text-xs font-mono tracking-tight shadow-sm flex items-center gap-3">
+                    <div>
+                        <span className="text-gray-400 mr-1.5 uppercase text-[10px] tracking-wider font-sans">Lat</span>
+                        <span className="font-medium text-gray-900">{mouseCoords.lat.toFixed(5)}</span>
+                    </div>
+                    <div className="w-[1px] h-3 bg-gray-200"></div>
+                    <div>
+                        <span className="text-gray-400 mr-1.5 uppercase text-[10px] tracking-wider font-sans">Lng</span>
+                        <span className="font-medium text-gray-900">{mouseCoords.lng.toFixed(5)}</span>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
