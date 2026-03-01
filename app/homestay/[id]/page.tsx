@@ -91,33 +91,6 @@ export default async function HomestayDetailsPage({ params }: HomestayDetailsPag
                         {homestay.name}
                     </h1>
 
-                    {/* Location Coordinates */}
-                    <div className="flex items-center gap-2 text-gray-500 mb-4">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5 text-gray-400"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={1.5}
-                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                            />
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={1.5}
-                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                            />
-                        </svg>
-                        <span className="text-sm font-mono tracking-tight bg-gray-100 px-2 py-0.5 rounded text-gray-600">
-                            {homestay.latitude.toFixed(4)}°N, {homestay.longitude.toFixed(4)}°E
-                        </span>
-                    </div>
-
                     {/* Divider */}
                     <hr className="border-gray-100 my-8" />
 
