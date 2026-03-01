@@ -42,14 +42,14 @@ export default function Home() {
         <Map />
       </div>
 
-      {/* Footer with instructions */}
-      <footer className="absolute bottom-12 sm:bottom-8 left-1/2 -translate-x-1/2 z-[9999] w-full max-w-[90vw] sm:max-w-fit pointer-events-none flex justify-center">
+      {/* Header with instructions */}
+      <header className="absolute top-6 sm:top-8 left-1/2 -translate-x-1/2 z-[9999] w-full max-w-[90vw] sm:max-w-fit pointer-events-none flex justify-center">
         <div className="bg-white/95 backdrop-blur-md border border-gray-200 shadow-sm rounded-full px-4 sm:px-5 py-2.5 pointer-events-auto">
           <p className="text-gray-700 text-xs sm:text-sm font-medium tracking-wide text-center">
             Klik pada penanda untuk melihat butiran homestay
           </p>
         </div>
-      </footer>
+      </header>
     </main>
   );
 }
