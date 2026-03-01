@@ -6,7 +6,7 @@
  * 
  * This page receives the homestay ID from the URL parameters,
  * finds the matching homestay from our dummy data, and displays
- * all the details including a large image, name, description, and price.
+ * all the details including a large image, name, participation year, and address.
  */
 
 import Link from "next/link";
@@ -43,10 +43,10 @@ export default async function HomestayDetailsPage({ params }: HomestayDetailsPag
     return (
         <main className="min-h-screen bg-gray-50">
             {/* Back Navigation */}
-            <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-200 px-4 py-3">
+            <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 px-4 py-4">
                 <Link
                     href="/"
-                    className="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 font-medium transition-colors"
+                    className="inline-flex items-center gap-2 text-gray-900 hover:text-gray-600 font-medium transition-colors text-sm tracking-wide"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -67,9 +67,9 @@ export default async function HomestayDetailsPage({ params }: HomestayDetailsPag
             </nav>
 
             {/* Content Container */}
-            <div className="max-w-4xl mx-auto px-4 py-8">
+            <div className="max-w-3xl mx-auto px-4 py-12">
                 {/* Large Hero Image */}
-                <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden shadow-xl mb-8">
+                <div className="relative w-full h-80 md:h-[28rem] rounded-xl overflow-hidden border border-gray-200 mb-10">
                     <Image
                         src={homestay.imageUrl}
                         alt={homestay.name}
@@ -78,24 +78,24 @@ export default async function HomestayDetailsPage({ params }: HomestayDetailsPag
                         priority
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 896px"
                     />
-                    {/* Price Badge */}
-                    <div className="absolute bottom-4 right-4 bg-emerald-600 text-white px-4 py-2 rounded-full font-bold shadow-lg">
-                        RM{homestay.pricePerNight} / night
+                    {/* Participation Badge */}
+                    <div className="absolute top-4 left-4 bg-white/95 backdrop-blur text-gray-900 px-4 py-1.5 rounded-md text-sm font-medium tracking-wide shadow-sm border border-gray-200">
+                        Sejak {homestay.participation}
                     </div>
                 </div>
 
                 {/* Homestay Information */}
-                <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <div className="bg-white rounded-xl border border-gray-200 p-8 md:p-10">
                     {/* Name */}
-                    <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 mb-6">
                         {homestay.name}
                     </h1>
 
                     {/* Location Coordinates */}
-                    <div className="flex items-center gap-2 text-gray-500 mb-6">
+                    <div className="flex items-center gap-2 text-gray-500 mb-4">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
+                            className="h-5 w-5 text-gray-400"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -103,73 +103,51 @@ export default async function HomestayDetailsPage({ params }: HomestayDetailsPag
                             <path
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
-                                strokeWidth={2}
+                                strokeWidth={1.5}
                                 d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
                             />
                             <path
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
-                                strokeWidth={2}
+                                strokeWidth={1.5}
                                 d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                             />
                         </svg>
-                        <span className="text-sm">
+                        <span className="text-sm font-mono tracking-tight bg-gray-100 px-2 py-0.5 rounded text-gray-600">
                             {homestay.latitude.toFixed(4)}°N, {homestay.longitude.toFixed(4)}°E
                         </span>
                     </div>
 
                     {/* Divider */}
-                    <hr className="border-gray-200 mb-6" />
+                    <hr className="border-gray-100 my-8" />
 
-                    {/* Full Description */}
-                    <div className="mb-8">
-                        <h2 className="text-xl font-semibold text-gray-900 mb-3">
-                            About this place
+                    {/* Full Address */}
+                    <div className="mb-10">
+                        <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-widest mb-4">
+                            Alamat
                         </h2>
                         <p className="text-gray-600 leading-relaxed text-lg">
-                            {homestay.description}
+                            {homestay.address}
                         </p>
                     </div>
 
-                    {/* Price Section */}
-                    <div className="bg-emerald-50 rounded-xl p-6">
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    {/* Contact Section */}
+                    <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 md:p-8">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
                             <div>
-                                <p className="text-gray-600 mb-1">Price per night</p>
-                                <p className="text-3xl font-bold text-emerald-600">
-                                    RM{homestay.pricePerNight}
+                                <p className="text-gray-500 text-sm mb-1 uppercase tracking-wide">Berminat untuk menginap?</p>
+                                <p className="text-xl font-medium text-gray-900 tracking-tight">
+                                    Hubungi pengusaha homestay
                                 </p>
                             </div>
-                            <button className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-8 rounded-xl transition-colors shadow-lg hover:shadow-xl">
-                                Book Now
+                            <button className="w-full sm:w-auto bg-gray-900 hover:bg-black text-white font-medium py-3 px-8 rounded-lg transition-colors">
+                                Hubungi sekarang
                             </button>
                         </div>
                     </div>
                 </div>
 
-                {/* Back Button (Mobile) */}
-                <div className="mt-8 text-center md:hidden">
-                    <Link
-                        href="/"
-                        className="inline-flex items-center justify-center gap-2 bg-gray-900 hover:bg-gray-800 text-white font-medium py-3 px-6 rounded-xl transition-colors"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                            />
-                        </svg>
-                        Back to Map
-                    </Link>
-                </div>
+
             </div>
         </main>
     );

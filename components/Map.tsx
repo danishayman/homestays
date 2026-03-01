@@ -98,10 +98,16 @@ export default function Map() {
 
             {/* Coordinate display overlay - shows when hovering on map */}
             {mouseCoords && (
-                <div className="absolute bottom-4 left-4 z-[1000] bg-black/70 text-white px-3 py-2 rounded-lg text-sm font-mono shadow-lg">
-                    <span className="text-emerald-400">Lat:</span> {mouseCoords.lat.toFixed(6)}
-                    <span className="mx-2">|</span>
-                    <span className="text-emerald-400">Lng:</span> {mouseCoords.lng.toFixed(6)}
+                <div className="absolute bottom-6 left-6 z-[1000] bg-white/95 backdrop-blur border border-gray-200 text-gray-800 px-4 py-2.5 rounded-lg text-xs font-mono tracking-tight shadow-sm flex items-center gap-3">
+                    <div>
+                        <span className="text-gray-400 mr-1.5 uppercase text-[10px] tracking-wider font-sans">Lat</span>
+                        <span className="font-medium text-gray-900">{mouseCoords.lat.toFixed(5)}</span>
+                    </div>
+                    <div className="w-[1px] h-3 bg-gray-200"></div>
+                    <div>
+                        <span className="text-gray-400 mr-1.5 uppercase text-[10px] tracking-wider font-sans">Lng</span>
+                        <span className="font-medium text-gray-900">{mouseCoords.lng.toFixed(5)}</span>
+                    </div>
                 </div>
             )}
         </div>
