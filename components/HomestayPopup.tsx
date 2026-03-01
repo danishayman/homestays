@@ -24,7 +24,7 @@ export default function HomestayPopup({ homestay }: HomestayPopupProps) {
 
             {/* Participation Year */}
             <p className="text-xs text-gray-500 font-medium tracking-wide uppercase mb-3">
-                Since {homestay.participation}
+                Penglibatan sejak {homestay.participation}
             </p>
 
             {/* Address - truncated to 80 chars */}
@@ -40,7 +40,7 @@ export default function HomestayPopup({ homestay }: HomestayPopupProps) {
                 className="block w-full text-center bg-gray-900 hover:bg-black py-2.5 px-4 rounded-md text-xs font-medium tracking-wide transition-colors"
                 style={{ color: 'white' }}
             >
-                View Details
+                Lihat Butiran
             </Link>
         </div>
     );
