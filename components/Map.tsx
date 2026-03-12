@@ -34,7 +34,7 @@ const customIcon = new Icon({
 
 // Center map on Rawang/Selayang area
 const MAP_CENTER: [number, number] = [3.69073, 101.02700];
-const MAP_ZOOM = 11.5;
+const MAP_ZOOM = 11.4;
 
 export default function Map() {
 
