@@ -28,7 +28,7 @@ const Map = dynamic(() => import("@/components/Map"), {
     <div className="h-screen w-screen flex items-center justify-center bg-gray-50">
       <div className="flex flex-col items-center gap-4">
         <div className="w-8 h-8 border-2 border-gray-900 border-t-transparent rounded-full animate-spin"></div>
-        <p className="text-gray-900 font-medium text-sm tracking-wide">Loading map...</p>
+        <p className="text-gray-900 font-medium text-sm tracking-wide">Memuatkan peta...</p>
       </div>
     </div>
   ),
