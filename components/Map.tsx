@@ -5,15 +5,13 @@
  * 
  * This component renders an interactive Leaflet map with OpenStreetMap tiles.
  * It displays markers for each homestay location.
- * Shows mouse coordinates on hover.
  * 
  * IMPORTANT: This component must be imported dynamically with ssr: false
  * because Leaflet requires the window object which doesn't exist during SSR.
  */
 
-import { useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
-import { Icon, LatLng } from "leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { Icon } from "leaflet";
 import { homestays } from "@/data/homestays";
 import HomestayPopup from "./HomestayPopup";
 
@@ -35,34 +33,10 @@ const customIcon = new Icon({
 });
 
 // Center map on Rawang/Selayang area
-const MAP_CENTER: [number, number] = [3.7393729, 100.9452107];
-const MAP_ZOOM = 11;
-
-/**
- * MouseCoordinates Component
- * 
- * Tracks mouse position on the map and passes coordinates to parent.
- * Uses react-leaflet's useMapEvents hook to listen for mousemove events.
- */
-function MouseCoordinates({
-    onMouseMove
-}: {
-    onMouseMove: (coords: LatLng | null) => void
-}) {
-    useMapEvents({
-        mousemove: (e) => {
-            onMouseMove(e.latlng);
-        },
-        mouseout: () => {
-            onMouseMove(null);
-        }
-    });
-    return null;
-}
+const MAP_CENTER: [number, number] = [3.69073, 101.02700];
+const MAP_ZOOM = 11.5;
 
 export default function Map() {
-    // State to track current mouse coordinates
-    const [mouseCoords, setMouseCoords] = useState<LatLng | null>(null);
 
     return (
         <div className="relative h-full w-full">
@@ -78,9 +52,6 @@ export default function Map() {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
 
-                {/* Mouse coordinate tracker */}
-                <MouseCoordinates onMouseMove={setMouseCoords} />
-
                 {/* Render a marker for each homestay */}
                 {homestays.map((homestay) => (
                     <Marker
@@ -95,21 +66,6 @@ export default function Map() {
                     </Marker>
                 ))}
             </MapContainer>
-
-            {/* Coordinate display overlay - shows when hovering on map */}
-            {mouseCoords && (
-                <div className="absolute bottom-6 sm:bottom-6 left-1/2 sm:left-6 -translate-x-1/2 sm:translate-x-0 z-[1000] bg-white/95 backdrop-blur border border-gray-200 text-gray-800 px-4 py-2.5 rounded-lg text-xs font-mono tracking-tight shadow-sm flex items-center gap-3">
-                    <div>
-                        <span className="text-gray-400 mr-1.5 uppercase text-[10px] tracking-wider font-sans">Lat</span>
-                        <span className="font-medium text-gray-900">{mouseCoords.lat.toFixed(5)}</span>
-                    </div>
-                    <div className="w-[1px] h-3 bg-gray-200"></div>
-                    <div>
-                        <span className="text-gray-400 mr-1.5 uppercase text-[10px] tracking-wider font-sans">Lng</span>
-                        <span className="font-medium text-gray-900">{mouseCoords.lng.toFixed(5)}</span>
-                    </div>
-                </div>
-            )}
         </div>
     );
 }
