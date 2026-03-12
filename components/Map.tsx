@@ -35,7 +35,7 @@ const customIcon = new Icon({
 });
 
 // Center map on Rawang/Selayang area
-const MAP_CENTER: [number, number] = [3.69073, 101.02700];
+const MAP_CENTER: [number, number] = [3.7393729, 100.9452107];
 const MAP_ZOOM = 11;
 
 /**
