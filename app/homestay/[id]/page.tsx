@@ -11,8 +11,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { homestays } from "@/data/homestays";
+import { homestays, getHomestayImages } from "@/data/homestays";
 import { notFound } from "next/navigation";
+import ImageGallery from "@/components/ImageGallery";
 
 interface HomestayDetailsPageProps {
     params: Promise<{ id: string }>;
@@ -39,6 +40,9 @@ export default async function HomestayDetailsPage({ params }: HomestayDetailsPag
     if (!homestay) {
         notFound();
     }
+
+    // Get all images for this homestay
+    const allImages = getHomestayImages(homestay.id);
 
     return (
         <main className="min-h-screen bg-gray-50">
@@ -68,18 +72,14 @@ export default async function HomestayDetailsPage({ params }: HomestayDetailsPag
 
             {/* Content Container */}
             <div className="max-w-3xl mx-auto px-4 py-12">
-                {/* Large Hero Image */}
-                <div className="relative w-full h-80 md:h-[28rem] rounded-xl overflow-hidden border border-gray-200 mb-10">
-                    <Image
-                        src={homestay.imageUrl}
-                        alt={homestay.name}
-                        fill
-                        className="object-cover"
-                        priority
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 896px"
+                {/* Image Gallery */}
+                <div className="relative mb-10">
+                    <ImageGallery 
+                        images={allImages} 
+                        homestayName={homestay.name} 
                     />
-                    {/* Participation Badge */}
-                    <div className="absolute top-4 left-4 bg-white/95 backdrop-blur text-gray-900 px-4 py-1.5 rounded-md text-sm font-medium tracking-wide shadow-sm border border-gray-200">
+                    {/* Participation Badge - positioned absolutely over the gallery */}
+                    <div className="absolute top-4 left-4 bg-white/95 backdrop-blur text-gray-900 px-4 py-1.5 rounded-md text-sm font-medium tracking-wide shadow-sm border border-gray-200 z-10">
                         Sejak {homestay.participation}
                     </div>
                 </div>

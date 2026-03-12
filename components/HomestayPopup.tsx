@@ -8,6 +8,7 @@
  */
 
 import Link from "next/link";
+import Image from "next/image";
 import { Homestay } from "@/data/homestays";
 
 interface HomestayPopupProps {
@@ -16,7 +17,18 @@ interface HomestayPopupProps {
 
 export default function HomestayPopup({ homestay }: HomestayPopupProps) {
     return (
-        <div className="min-w-[220px] p-2">
+        <div className="min-w-[280px] p-2">
+            {/* Homestay Image */}
+            <div className="relative w-full h-32 rounded-md overflow-hidden border border-gray-200 mb-3">
+                <Image
+                    src={homestay.imageUrl}
+                    alt={homestay.name}
+                    fill
+                    className="object-cover"
+                    sizes="280px"
+                />
+            </div>
+
             {/* Homestay Name */}
             <h3 className="font-bold text-base text-gray-900 mb-1 leading-tight tracking-tight">
                 {homestay.name}
