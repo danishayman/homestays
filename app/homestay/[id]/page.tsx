@@ -10,7 +10,6 @@
  */
 
 import Link from "next/link";
-import Image from "next/image";
 import { homestays, getHomestayImages } from "@/data/homestays";
 import { notFound } from "next/navigation";
 import ImageGallery from "@/components/ImageGallery";
@@ -18,6 +17,12 @@ import ImageGallery from "@/components/ImageGallery";
 interface HomestayDetailsPageProps {
     params: Promise<{ id: string }>;
 }
+
+const HOMESTAY_COORDINATOR = {
+    name: "En Abdul Rahman",
+    phoneDisplay: "013-607 7025",
+    phoneHref: "tel:+60136077025",
+};
 
 /**
  * Generate static params for all homestays
@@ -110,12 +115,18 @@ export default async function HomestayDetailsPage({ params }: HomestayDetailsPag
                             <div>
                                 <p className="text-gray-500 text-sm mb-1 uppercase tracking-wide">Berminat untuk menginap?</p>
                                 <p className="text-xl font-medium text-gray-900 tracking-tight">
-                                    Hubungi pengusaha homestay
+                                    Hubungi penyelaras homestay
+                                </p>
+                                <p className="text-sm text-gray-600 mt-2">
+                                    {HOMESTAY_COORDINATOR.name}: {HOMESTAY_COORDINATOR.phoneDisplay}
                                 </p>
                             </div>
-                            <button className="w-full sm:w-auto bg-gray-900 hover:bg-black text-white font-medium py-3 px-8 rounded-lg transition-colors">
+                            <a
+                                href={HOMESTAY_COORDINATOR.phoneHref}
+                                className="w-full sm:w-auto bg-gray-900 hover:bg-black text-white font-medium py-3 px-8 rounded-lg transition-colors text-center"
+                            >
                                 Hubungi sekarang
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
